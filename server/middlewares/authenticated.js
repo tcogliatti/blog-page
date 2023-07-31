@@ -2,7 +2,7 @@ const jwt = require("../utils/jwt");
 
 function asureAuth(req, res, next){
     if(!req.headers.authorization){
-        return res.status(403).send({msg: "la cabecera no tiene la petición de autenticación"});
+        return res.status(403).send({msg: "Error: autetication header is void"});
         
     }
     const token = req.headers.authorization.replace("Bearer ","");

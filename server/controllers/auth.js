@@ -23,7 +23,7 @@ async function register(req, res){
 
     try{
         await user.save();
-        res.status(200).send({ msg: "User created successfully" });
+        res.status(201).send({ msg: "User created successfully" });
 
     } catch (error) {
         res.status(500).send({ msg: "Error when trying to create user" });
@@ -47,10 +47,6 @@ async function login(req, res){
     try{
         userStore = await User.findOne ({email : emailToLowercase});
         
-        console.log("Password: ", password);
-        console.log("Email: ", email);
-        console.log(userStore);
-
         bcrypt.compare(password, userStore.password, (bcryptError, check) => {
             if(bcryptError)
                 res.status(500).send({ msg: "User login error" });
@@ -66,8 +62,6 @@ async function login(req, res){
                     refresh: jwt.createRefreshToken(userStore)
                  });
         })
-
-        // res.status(200).send({ msg: "User find" });
 
     } catch(error){
         res.status(500).send({ msg: "User login error" });
