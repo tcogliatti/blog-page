@@ -21,9 +21,6 @@ export function LoginForm() {
                 authController.setAccessToken(response.access);
                 authController.setRefreshToken(response.refresh);
                 
-                console.log(response.access);
-                console.log(response.refresh);
-                
                 login(response.access);
             } catch (error) {
                 console.error(error);

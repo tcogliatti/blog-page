@@ -1,6 +1,5 @@
 import React from 'react';
-import { Routes, Route} from "react-router-dom";
-// import lodash from "lodash";
+import { Routes, Route } from "react-router-dom";
 import { AdminLayout } from "../layouts";
 import { Auth, Users, Blog, Courses, Menu, Newsletter } from "../pages/admin";
 import { useAuth } from "../hooks";
@@ -20,18 +19,16 @@ export function AdminRouter() {
     <Routes>
       {
         !user ? (
-          <Route path="/admin/*" element={ <Auth />} /> 
+          <Route path="/admin/*" element={<Auth />} />
         ) : (
           <>
-          {["/admin", "/admin/blog"].map( (path) => {
-            return <Route key={path} path={path} element={ loadLayout(AdminLayout, Blog)} /> 
-          })};
-          <Route path="/admin/Users" element={ loadLayout(AdminLayout, Users)} /> 
-          <Route path="/admin/Courses" element={ loadLayout(AdminLayout, Courses)} /> 
-          <Route path="/admin/Courses" element={ loadLayout(AdminLayout, Courses)} /> 
-          <Route path="/admin/Menu" element={ loadLayout(AdminLayout, Menu)} /> 
-          <Route path="/admin/Newsletter" element={ loadLayout(AdminLayout, Newsletter)} /> 
-
+            {["/admin", "/admin/blog"].map((path) => { /* Carga una misma pagina, Blog, para dos rutas diferentes */
+              return <Route key={path} path={path} element={loadLayout(AdminLayout, Blog)} />
+            })};
+            <Route path="/admin/users"      element={loadLayout(AdminLayout, Users)} />
+            <Route path="/admin/courses"    element={loadLayout(AdminLayout, Courses)} />
+            <Route path="/admin/menu"       element={loadLayout(AdminLayout, Menu)} />
+            <Route path="/admin/newsletter" element={loadLayout(AdminLayout, Newsletter)} />
           </>
         )
       }

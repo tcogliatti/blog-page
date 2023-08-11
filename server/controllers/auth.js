@@ -41,9 +41,9 @@ async function login(req, res){
         res.status(400).send({msg: "password cant be empty"});
         return;
     } 
-
+    
     const emailToLowercase =  email.toLowerCase();
-
+    
     try{
         userStore = await User.findOne ({email : emailToLowercase});
         
@@ -65,7 +65,6 @@ async function login(req, res){
 
     } catch(error){
         res.status(500).send({ msg: "User login error" });
-
     }
 }
 
