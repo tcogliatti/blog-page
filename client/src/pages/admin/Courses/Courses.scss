@@ -7,5 +7,11 @@
         >.ui.button {
             margin: 0;
         }
+
+    }
+
+    .ui.tab.segment {
+        height: calc(100vh - 150px);
+        overflow-y: scroll;
     }
 }
