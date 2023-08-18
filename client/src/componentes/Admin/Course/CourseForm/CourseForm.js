@@ -13,20 +13,20 @@ import { isEqualWith } from 'lodash';
 const courseController = new Course();
 
 export function CourseForm(props) {
-    const { onClose, onReload } = props;
+    const { onClose, onReload, course } = props;
     const { accessToken } = useAuth();
 
     // manejo de validaciones de formulario
     const formik = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues(course),
         validationSchema: validationSchema(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-            //     if (!user)
+                if (!course)
                     await courseController.createCourse(accessToken, formValue);
-                // else
-                //     await userController.updateUser(accessToken, user._id, formValue);
+                else
+                    await courseController.updateCourse(accessToken, course._id, formValue);
                 onReload();
                 onClose();
             } catch (error) {
@@ -48,11 +48,9 @@ export function CourseForm(props) {
     const getMiniature = () => {
         if(formik.values.file)
             return formik.values.miniature;
-        // else if(formik.values.minitaure)
-        //     return formik.values.minitaure;
-        // else
+        else if(formik.values.miniature)
+            return `${ENV.BASE_PATH}/${formik.values.miniature}`;
         return null;
-
     };
 
     return (
@@ -67,7 +65,7 @@ export function CourseForm(props) {
                     <Image size='small' src={getMiniature()} />
                 ) : (
                     <div>
-                        <span>Arrastra tu minuatura</span>
+                        <span>Arrastra la imagen del curso</span>
                     </div>
                 )}
             </div>
@@ -111,7 +109,7 @@ export function CourseForm(props) {
                 />
             </Form.Group>
             <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-                Crear curso
+                {!course? "Crear curso" : "Actualizar curso"}
             </Form.Button>
         </Form>
     )

@@ -1,9 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { Tab, Button } from "semantic-ui-react";
+import { ListEmails } from "../../../componentes/Admin/Newsletter";
+
+const panes = [
+  {
+    render: () => (
+      <Tab.Pane attached={false}>
+        <ListEmails />
+      </Tab.Pane>
+    ),
+  },
+];
 
 export function Newsletter() {
   return (
     <div>
-        <h1>Estamos en Newsletter</h1>
+      <Tab menu={{ secondary: true }} panes={panes} />
     </div>
   )
 }
