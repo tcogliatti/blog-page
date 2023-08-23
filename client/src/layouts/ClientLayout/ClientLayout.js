@@ -18,8 +18,8 @@ export function ClientLayout(props) {
       <div className='client-layout__footer'>
         <Container>
           <Footer.Info />
-          <span>Menu</span>
-          <span>Newsletter</span>
+          <Footer.Menu />
+          <Footer.Newsletter />
         </Container>
         <Container>
           <span>® All Rigths Reserved {currentYear}</span>
