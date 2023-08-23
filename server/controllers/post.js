@@ -9,10 +9,10 @@ async function createPost(req, res) {
     post.miniature = imagePath;
 
     try {
-        const postStored = await Post.save();
+        const postStored = await post.save();
         res.status(201).send(postStored);
     } catch (error) {
-        res.status(400).send({ msg: "Error when try to create post" });
+        res.status(400).send({ msg: "Error when try to create post", error: error });
     }
 }
 
@@ -26,7 +26,7 @@ async function getPost(req, res){
     
     try{
         const postsStorted = await Post.paginate({}, options);
-        res.status(201).send(postsStorted);
+        res.status(200).send(postsStorted);
     }catch(error){
         res.status(400).send({ msg: "Error when try to get post" });
     }

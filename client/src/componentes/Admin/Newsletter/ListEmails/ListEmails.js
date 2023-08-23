@@ -28,7 +28,6 @@ export function ListEmails() {
                     pages: response.pages,
                     total: response.total,
                 });
-                console.log(emails);
             } catch (error) {
                 console.error(error);
             }

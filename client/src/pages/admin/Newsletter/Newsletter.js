@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import { ListEmails } from "../../../componentes/Admin/Newsletter";
+import "./Newsletter.scss";
 
 const panes = [
   {
@@ -14,8 +15,8 @@ const panes = [
 
 export function Newsletter() {
   return (
-    <div>
-      <Tab menu={{ secondary: true }} panes={panes} />
+    <div className='newsletter-page'>
+      <Tab menu={{ secondary: true }} panes={panes}/>
     </div>
   )
 }
