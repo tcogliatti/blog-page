@@ -10,16 +10,22 @@ const newsletterController = new NewsletterController();
 export function Newsletter() {
     const [success, setSuccess] = useState(false);
 
+    const showHideMessage = () => {
+        setSuccess(true);
+        setTimeout(() => {
+            setSuccess(false);
+        }, 5000)
+    }
+
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: validationSchema(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
-            setSuccess(false);
             try {
                 await newsletterController.registerEmail(formValue.email);
                 formik.resetForm();
-                setSuccess(true);
+                showHideMessage();
             } catch (error) {
                 console.error(error);
             }
